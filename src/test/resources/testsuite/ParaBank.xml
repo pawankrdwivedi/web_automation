@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression Test - STP Workflow" verbose="1">
+    <test name="Regression Test Scenario- STP Workflow" >
+        <classes>
+            <class name="com.qbe.automation.test.testcases.testng.stp.e2eSTPWorkflow">
+                <methods>
+                    <include name="_001_Trigger_STP_Policy_Without_R2_Data_Goes_To_Exception" />
+                    <include name="_002_Trigger_STP_Policy_Verify_Pricing_MJ_And_Widgets" />
+                    <include name="_003_Edit_Commission_STP_Policy_Verify_RePricing_MJ" />
+                    <include name="_004_Edit_And_Verify_Broker_Widget_For_STP_Policy" />
+                    <include name="_005_Generate_Documents_Issue_Quote_For_STP_Policy" />
+                    <exclude name="_006_Bind_STP_Policy" />
+                    <exclude name="_007_Complete_Bind_Journey_In_Pega_R2" />
+                    <exclude name="_008_Close_Bind_STP_Policy" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
