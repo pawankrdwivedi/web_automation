@@ -42,10 +42,10 @@ public class FileUtils
             String fileName=getFileDetails(courgetteLatestPath+"report","index.html","modified");
 
             File src=new File(userDirectory+courgetteLatestPath+"report/index.html");
-            File dest=new File(userDirectory+courgetteHistoryPath+"report/"+fileName+".html");
+            File dest=new File(userDirectory+courgetteHistoryPath+"report/"+"Cucumber_Report_"+fileName+".html");
             Files.copy(src.toPath(),dest.toPath());
             File src1=new File(userDirectory+courgetteLatestPath+"extentreports/index.html");
-            File dest1=new File(userDirectory+courgetteHistoryPath+"extentreports/"+fileName+".html");
+            File dest1=new File(userDirectory+courgetteHistoryPath+"extentreports/"+"Extent_Report_"+fileName+".html");
             Files.copy(src1.toPath(),dest1.toPath());
 
         } catch (IOException e) {
