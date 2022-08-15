@@ -73,9 +73,6 @@ Framework is developed by using Selenium-Cucumber-java.
     </li>
 </ul>
 
-### Repository URL: ###
-https://github.com/pawankrdwivedi/web_automation
-<br>Click on Code button and choose option to download framework
 ### Pre-requisite (IDE and Test Bed): ###
 * IntelliJ IDEA 2021.2.1 (Community Edition)
 * JDK 1.8
