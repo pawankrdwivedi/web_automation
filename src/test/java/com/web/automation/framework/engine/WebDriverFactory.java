@@ -1,15 +1,11 @@
 package com.web.automation.framework.engine;
 
-import com.web.automation.framework.exception.QbeException;
+import com.web.automation.framework.exception.WebException;
 import com.web.automation.framework.log.LogHelper;
-import com.web.automation.framework.exception.QbeException;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import com.web.automation.framework.utils.PropertyReader;
 
 public class WebDriverFactory
@@ -17,7 +13,7 @@ public class WebDriverFactory
     public static WebDriver driver;
     static LogHelper logger = new LogHelper();
 
-    public static WebDriver getDriver() throws QbeException
+    public static WebDriver getDriver() throws WebException
     {
         String browser = null;
         try {
@@ -52,7 +48,7 @@ public class WebDriverFactory
         catch(Exception e)
         {
             logger.fatal("Unable to create "+browser.toUpperCase()+" Wedriver. "+e.getMessage());
-            throw new QbeException("Unable to create "+browser.toUpperCase()+" Wedriver. "+e.getMessage());
+            throw new WebException("Unable to create "+browser.toUpperCase()+" Wedriver. "+e.getMessage());
         }
         logger.info(browser.toUpperCase()+" Wedriver created.");
         return driver;

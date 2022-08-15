@@ -1,6 +1,6 @@
 package com.web.automation.test.constant;
 
-public class ParaBankConstant {
+public class AutomationExerciseConstant {
 
     /**
      * DATA

@@ -1,7 +1,6 @@
 package com.web.automation.framework.utils;
 
-import com.web.automation.framework.exception.QbeException;
-import com.web.automation.framework.exception.QbeException;
+import com.web.automation.framework.exception.WebException;
 
 import java.util.Random;
 
@@ -25,15 +24,15 @@ public class GenericHelper {
         }
     }
 
-    public void killChromeInstances() throws QbeException {
+    public void killChromeInstances() throws WebException {
         try {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
 
-    public String getTriggeredPolicyNumber(String policyNumber) throws QbeException {
+    public String getTriggeredPolicyNumber(String policyNumber) throws WebException {
         String increasedPolicyNumber = "";
         try {
             String lastChr = policyNumber.substring(policyNumber.length() - 1);
@@ -43,7 +42,7 @@ public class GenericHelper {
             policyNumber = policyNumber.substring(0, policyNumber.length() - 3);
             increasedPolicyNumber = policyNumber + year + lastChr;
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
         return increasedPolicyNumber;
     }

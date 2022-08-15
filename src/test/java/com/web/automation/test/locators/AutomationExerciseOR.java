@@ -2,7 +2,7 @@ package com.web.automation.test.locators;
 
 import org.openqa.selenium.By;
 
-public class ParaBankOR {
+public class AutomationExerciseOR {
     //By.id
     public static final By HEADER_PANEL=By.id("headerPanel");
     //By.xpath

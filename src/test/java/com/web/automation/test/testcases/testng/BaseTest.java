@@ -1,18 +1,12 @@
 package com.web.automation.test.testcases.testng;
 
 import com.web.automation.framework.engine.SeleniumHelper;
-import com.web.automation.framework.exception.QbeException;
+import com.web.automation.framework.exception.WebException;
 import com.web.automation.framework.report.ReportManagerHelper;
 import com.web.automation.framework.report.ReportTestHelper;
 import com.web.automation.framework.utils.GenericHelper;
 import com.web.automation.framework.utils.PropertyReader;
-import com.web.automation.framework.engine.SeleniumHelper;
-import com.web.automation.framework.exception.QbeException;
-import com.web.automation.framework.report.ReportManagerHelper;
-import com.web.automation.framework.report.ReportTestHelper;
-import com.web.automation.framework.utils.GenericHelper;
-import com.web.automation.framework.utils.PropertyReader;
-import com.web.automation.test.businessfunctions.ParaBankBF;
+import com.web.automation.test.businessfunctions.AutomationExerciseBF;
 import com.web.automation.test.businessfunctions.ToDoMVCBF;
 import org.testng.annotations.*;
 
@@ -32,7 +26,7 @@ public class BaseTest {
     /**
      * Application Business Functions
      */
-    public ParaBankBF paraBank = new ParaBankBF();
+    public AutomationExerciseBF paraBank = new AutomationExerciseBF();
     public ToDoMVCBF toDoMCV=new ToDoMVCBF();
     /**
      * Others
@@ -45,7 +39,7 @@ public class BaseTest {
         if (framework.equalsIgnoreCase("testng")) {
             try {
                 ReportManagerHelper.createExtentReports();
-            } catch (QbeException e) {
+            } catch (WebException e) {
                 e.printStackTrace();
             }
         }
@@ -59,7 +53,7 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void closeTest(Method caller) throws QbeException {
+    public void closeTest(Method caller) throws WebException {
         if (framework.equalsIgnoreCase("testng")) {
             SeleniumHelper selHelper = new SeleniumHelper();
             selHelper.quitBrowser();
@@ -67,7 +61,7 @@ public class BaseTest {
     }
 
     @AfterSuite
-    public void closeDrvierAndBrowser() throws QbeException {
+    public void closeDrvierAndBrowser() throws WebException {
         if (framework.equalsIgnoreCase("testng")) {
             ReportManagerHelper.closeReport();
             //genFunc.killChromeInstances();

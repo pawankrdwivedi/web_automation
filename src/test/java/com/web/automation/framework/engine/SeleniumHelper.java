@@ -1,17 +1,14 @@
 package com.web.automation.framework.engine;
 
-import com.web.automation.framework.exception.QbeException;
+import com.web.automation.framework.exception.WebException;
 import com.web.automation.framework.log.LogHelper;
 import com.web.automation.framework.utils.GenericHelper;
 import com.web.automation.framework.utils.PropertyReader;
-import com.web.automation.framework.exception.QbeException;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -26,14 +23,14 @@ public class SeleniumHelper extends WebDriverFactory {
         return driver;
     }
 
-    public void openURL(String url) throws QbeException {
+    public void openURL(String url) throws WebException {
         try {
             driver = getDriver();
             driver.get(url);
             logger.info("URL opened: " + url);
         } catch (Exception e) {
             logger.fatal("Unable to open URL:" + url + "</br>" + e.getMessage());
-            throw new QbeException("Unable to open URL:" + url + "</br>" + e.getMessage());
+            throw new WebException("Unable to open URL:" + url + "</br>" + e.getMessage());
         }
     }
 
@@ -41,14 +38,14 @@ public class SeleniumHelper extends WebDriverFactory {
         driver.navigate().refresh();
     }
 
-    public void navigateToNewURL(String url) throws QbeException {
+    public void navigateToNewURL(String url) throws WebException {
         try {
             driver = getDriver();
             driver.get(url);
             logger.info("Navigated to URL: " + url);
         } catch (Exception e) {
             logger.fatal("Unable to navigated to URL: " + url + "</br>" + e.getMessage());
-            throw new QbeException("Unable to navigated to URL: " + url + "</br>" + e.getMessage());
+            throw new WebException("Unable to navigated to URL: " + url + "</br>" + e.getMessage());
         }
     }
 
@@ -62,12 +59,12 @@ public class SeleniumHelper extends WebDriverFactory {
             }
             return flag;
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
 
 
-    public By by(String locatorType, String locatorValue) throws QbeException {
+    public By by(String locatorType, String locatorValue) throws WebException {
         By by = null;
         try {
             switch (locatorType.toLowerCase()) {
@@ -85,12 +82,12 @@ public class SeleniumHelper extends WebDriverFactory {
                     break;
             }
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
         return by;
     }
 
-    public WebElement findElement(By by) throws QbeException {
+    public WebElement findElement(By by) throws WebException {
         WebElement eleToAction = null;
         boolean flag = false;
         try {
@@ -122,69 +119,69 @@ public class SeleniumHelper extends WebDriverFactory {
         return eleToAction;
     }
 
-    public List<WebElement> findElementCollection(By by) throws QbeException {
+    public List<WebElement> findElementCollection(By by) throws WebException {
         List<WebElement> eleCollection;
         try {
             eleCollection = driver.findElements(by);
         } catch (Exception e) {
             logger.fatal(("Unable to identify element " + by.toString() + e.getMessage()));
-            throw new QbeException("Unable to identify element " + by + " " + e.getMessage());
+            throw new WebException("Unable to identify element " + by + " " + e.getMessage());
         }
         return eleCollection;
     }
 
-    public List<WebElement> findChildElementCollection(WebElement ele, By by) throws QbeException {
+    public List<WebElement> findChildElementCollection(WebElement ele, By by) throws WebException {
         List<WebElement> eleCollection;
         try {
             eleCollection = ele.findElements(by);
         } catch (Exception e) {
             logger.fatal(("Unable to identify child element " + by.toString() + e.getMessage()));
-            throw new QbeException("Unable to identify child element " + by + " " + e.getMessage());
+            throw new WebException("Unable to identify child element " + by + " " + e.getMessage());
         }
         return eleCollection;
     }
 
-    public WebElement findElementByIndex(By by, int index) throws QbeException {
+    public WebElement findElementByIndex(By by, int index) throws WebException {
         WebElement ele;
         try {
             genFunctions.initialTimeWait();
             ele = findElementCollection(by).get(index);
         } catch (Exception e) {
             logger.fatal(("Unable to identify element " + by.toString() + " for index: " + index + " " + e.getMessage()));
-            throw new QbeException("Unable to identify element " + by + " for index: " + index + " " + e.getMessage());
+            throw new WebException("Unable to identify element " + by + " for index: " + index + " " + e.getMessage());
         }
         logger.info("Identify element: " + by.toString() + " for index: " + index);
         return ele;
     }
 
-    public void click(String locatorType, String locatorValue) throws QbeException {
+    public void click(String locatorType, String locatorValue) throws WebException {
         try {
             By by = by(locatorType, locatorValue);
             click(by);
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
 
-    public void click(By by) throws QbeException {
+    public void click(By by) throws WebException {
         try {
             WebElement ele = findElement(by);
             click(ele);
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
 
-    public void clickCheckbox(By by) throws QbeException {
+    public void clickCheckbox(By by) throws WebException {
         try {
             WebElement ele = findElement(by);
             click(ele);
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
 
-    public void click(WebElement ele) throws QbeException {
+    public void click(WebElement ele) throws WebException {
         try {
             ele.click();
             logger.info("Element " + ele + " is clicked.");
@@ -195,36 +192,36 @@ public class SeleniumHelper extends WebDriverFactory {
         }
     }
 
-    public void doubleClick(By by) throws QbeException {
+    public void doubleClick(By by) throws WebException {
         try {
             WebElement ele = findElement(by);
             doubleClick(ele);
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
 
-    public void doubleClick(WebElement ele) throws QbeException {
+    public void doubleClick(WebElement ele) throws WebException {
         try {
             //waitTillElementIsClickable(ele);
             Actions action = new Actions(driver);
             action.doubleClick(ele).build().perform();
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
 
-    public void moveAndClick(By by) throws QbeException {
+    public void moveAndClick(By by) throws WebException {
         WebElement ele;
         try {
             ele = findElement(by);
             moveAndClick(ele);
         } catch (Exception e) {
             logger.fatal("Unable to move and click element: " + by.toString() + " " + e.getMessage());
-            throw new QbeException("Unable to move and click element: " + by + " " + e.getMessage());
+            throw new WebException("Unable to move and click element: " + by + " " + e.getMessage());
         }
     }
-    public void moveAndClick(WebElement ele) throws QbeException {
+    public void moveAndClick(WebElement ele) throws WebException {
         try {
             waitTillElementIsClickable(ele);
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", ele);
@@ -232,26 +229,26 @@ public class SeleniumHelper extends WebDriverFactory {
             logger.info("Moved and clicked on element: " + ele.toString());
         } catch (Exception e) {
             logger.fatal("Unable to move and click element: " + ele.toString() + " " + e.getMessage());
-            throw new QbeException("Unable to move and click element: " + ele + " " + e.getMessage());
+            throw new WebException("Unable to move and click element: " + ele + " " + e.getMessage());
         }
     }
-    public void type(By by, String text) throws QbeException {
+    public void type(By by, String text) throws WebException {
         try {
             type(findElement(by), text);
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
 
-    public void type(WebElement ele, String text) throws QbeException {
+    public void type(WebElement ele, String text) throws WebException {
         try {
             ele.sendKeys(text);
         } catch (Exception e) {
-            throw new QbeException("Unable to type on element: " + ele.toString() + " " + e.getMessage());
+            throw new WebException("Unable to type on element: " + ele.toString() + " " + e.getMessage());
         }
     }
 
-    public void clearAndType(By by, String text) throws QbeException {
+    public void clearAndType(By by, String text) throws WebException {
         WebElement ele = null;
         try {
             ele = findElement(by);
@@ -264,30 +261,30 @@ public class SeleniumHelper extends WebDriverFactory {
             logger.info("Able to clear and type on WebElement: " + ele);
         } catch (Exception e) {
             logger.fatal("Unable to clear and type on WebElement: " + ele);
-            throw new QbeException("Unable to clear and type on WebElement: " + ele);
+            throw new WebException("Unable to clear and type on WebElement: " + ele);
         }
     }
 
-    public String getText(By by) throws QbeException {
+    public String getText(By by) throws WebException {
         WebElement ele;
         try {
             ele = findElement(by);
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
         return getText(ele);
     }
 
-    public String getText(WebElement ele) throws QbeException {
+    public String getText(WebElement ele) throws WebException {
         try {
             return ele.getText();
         } catch (Exception e) {
-            throw new QbeException("Unable to get text for Element: " + ele.toString() + " " + e.getMessage());
+            throw new WebException("Unable to get text for Element: " + ele.toString() + " " + e.getMessage());
         }
     }
 
 
-    public boolean isDisplayed(By by) throws QbeException {
+    public boolean isDisplayed(By by) throws WebException {
         boolean flag = false;
         try {
             genFunctions.wait(1);
@@ -297,7 +294,7 @@ public class SeleniumHelper extends WebDriverFactory {
             }
             return flag;
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
 
@@ -372,24 +369,24 @@ public class SeleniumHelper extends WebDriverFactory {
         }
     }
 
-    public void scrollToElement(By by) throws QbeException {
+    public void scrollToElement(By by) throws WebException {
         WebElement ele;
         try {
             ele = findElement(by);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].scrollIntoView();", ele);
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
 
-    public void quitBrowser() throws QbeException {
+    public void quitBrowser() throws WebException {
         try {
             if (driver != null) {
                 driver.quit();
             }
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
 
@@ -435,7 +432,7 @@ public class SeleniumHelper extends WebDriverFactory {
         System.out.println(driver.getPageSource());
     }
 
-    public void setAttributeValue(By by, String text) throws QbeException {
+    public void setAttributeValue(By by, String text) throws WebException {
         try {
             WebElement ele = findElement(by);
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -443,18 +440,18 @@ public class SeleniumHelper extends WebDriverFactory {
                     ele, "innerHTML", text);
 
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
-    public void jsType(By by, String text) throws QbeException {
+    public void jsType(By by, String text) throws WebException {
         try {
             WebElement ele = findElement(by);
             ((JavascriptExecutor) driver).executeScript("arguments[0].value='" + text + "'", ele);
         } catch (Exception e) {
-            throw new QbeException(e.getMessage());
+            throw new WebException(e.getMessage());
         }
     }
-    public void clearType(By by, String text) throws QbeException {
+    public void clearType(By by, String text) throws WebException {
         WebElement ele = null;
         try {
             ele = findElement(by);
@@ -462,11 +459,11 @@ public class SeleniumHelper extends WebDriverFactory {
             logger.info("Able to clear and type on WebElement: " + ele);
         } catch (Exception e) {
             logger.fatal("Unable to clear and type on WebElement: " + ele);
-            throw new QbeException("Unable to clear and type on WebElement: " + ele);
+            throw new WebException("Unable to clear and type on WebElement: " + ele);
         }
     }
 
-    public void typeKeyBoardButtonsOnWebElement(By by, String keyboardButton) throws QbeException {
+    public void typeKeyBoardButtonsOnWebElement(By by, String keyboardButton) throws WebException {
         WebElement ele;
         try {
 
@@ -491,10 +488,10 @@ public class SeleniumHelper extends WebDriverFactory {
             logger.info("Able to Type Keyboard button " + keyboardButton.toUpperCase() + " on WebElement " + by.toString());
         } catch (Exception e) {
             logger.fatal("Unable to Type Keyboard button " + keyboardButton.toUpperCase() + " on WebElement " + by.toString());
-            throw new QbeException("Unable to Type Keyboard button " + keyboardButton.toUpperCase() + " on WebElement " + by);
+            throw new WebException("Unable to Type Keyboard button " + keyboardButton.toUpperCase() + " on WebElement " + by);
         }
     }
-    public void typeKeyBoardButtons(String keyboardButton) throws QbeException {
+    public void typeKeyBoardButtons(String keyboardButton) throws WebException {
         try {
             Robot keyBoardRobot=new Robot();
             switch (keyboardButton.toLowerCase().trim()) {
@@ -507,10 +504,10 @@ public class SeleniumHelper extends WebDriverFactory {
             logger.info("Able to Type Keyboard button " + keyboardButton.toUpperCase());
         } catch (Exception e) {
             logger.fatal("Unable to Type Keyboard button " + keyboardButton.toUpperCase());
-            throw new QbeException("Unable to Type Keyboard button " + keyboardButton.toUpperCase());
+            throw new WebException("Unable to Type Keyboard button " + keyboardButton.toUpperCase());
         }
     }
-    public String getAttribute(By by, String attribute) throws QbeException {
+    public String getAttribute(By by, String attribute) throws WebException {
         WebElement ele = findElement(by);
         return ele.getAttribute(attribute);
     }
@@ -543,7 +540,7 @@ public class SeleniumHelper extends WebDriverFactory {
                 }
             }
         } catch (Exception e) {
-            throw new QbeException("Failed to switch to active iFrame " + e.getMessage());
+            throw new WebException("Failed to switch to active iFrame " + e.getMessage());
         }
     }
     */

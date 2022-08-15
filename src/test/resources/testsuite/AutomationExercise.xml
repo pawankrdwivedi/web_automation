@@ -2,7 +2,7 @@
 <suite name="Regression Test - Para Bank" verbose="1">
     <test name="Regression Test Scenario- Para Bank" >
         <classes>
-            <class name="com.web.automation.test.testcases.testng.ParaBankTest">
+            <class name="com.web.automation.test.testcases.testng.AutomationExerciseTest">
                 <methods>
                     <include name="_001_Login_To_Para_Bank" />
                 </methods>

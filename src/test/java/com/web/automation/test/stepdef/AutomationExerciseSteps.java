@@ -1,15 +1,11 @@
 package com.web.automation.test.stepdef;
 
-import com.web.automation.test.cucumbercontext.Context;
 import com.web.automation.test.cucumbercontext.TestContext;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 
-import java.io.IOException;
-
-public class ParaBankSteps extends BaseStep{
-    public ParaBankSteps(TestContext testContext) {
+public class AutomationExerciseSteps extends BaseStep{
+    public AutomationExerciseSteps(TestContext testContext) {
         super(testContext);
     }
 

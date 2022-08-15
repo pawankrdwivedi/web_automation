@@ -1,4 +1,4 @@
-Feature: Para Bank - End 2 End Test Scenarios
+Feature: Automation Exercise - End 2 End Test Scenarios
 
   @Sample @High-Priority @Regression
   Scenario: Login to Para Bank with valid credentials.
