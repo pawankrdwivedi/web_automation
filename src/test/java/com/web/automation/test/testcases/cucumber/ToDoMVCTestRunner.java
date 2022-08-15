@@ -19,12 +19,12 @@ import org.testng.annotations.Test;
 
         plugin = {CourgettePlugin.EXTENT_REPORTS},
         cucumberOptions = @CucumberOptions(
-                features = "src/test/resources/features/ParaBank.feature",
+                features = "src/test/resources/features/ToDoMVC.feature",
                 glue = "com/web/automation/test/stepdef",
-                tags = "@Sample",
+                tags = "@Test",
                 publish = false
         ))
-public class ParaBankTestRunner extends TestNGCourgette {
+public class ToDoMVCTestRunner extends TestNGCourgette {
     @AfterClass
     public void copyReports() {
         FileUtils.copyCourgetteReportsInHistory();

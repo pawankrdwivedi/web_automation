@@ -52,6 +52,21 @@ public class SeleniumHelper extends WebDriverFactory {
         }
     }
 
+    public boolean verifyTitle(String title) {
+        boolean flag = false;
+        try {
+            genFunctions.wait(1);
+
+            if (driver.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                flag = true;
+            }
+            return flag;
+        } catch (Exception e) {
+            throw new QbeException(e.getMessage());
+        }
+    }
+
+
     public By by(String locatorType, String locatorValue) throws QbeException {
         By by = null;
         try {
@@ -387,6 +402,10 @@ public class SeleniumHelper extends WebDriverFactory {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].click();", ele);
         genFunctions.initialTimeWait();
+    }
+    public String getAttribute(By by){
+        WebElement ele = findElement(by);
+        return ele.getAttribute("class");
     }
     /*
         public void highlightElement(By by){

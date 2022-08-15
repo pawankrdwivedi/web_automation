@@ -13,6 +13,7 @@ import com.web.automation.framework.report.ReportTestHelper;
 import com.web.automation.framework.utils.GenericHelper;
 import com.web.automation.framework.utils.PropertyReader;
 import com.web.automation.test.businessfunctions.ParaBankBF;
+import com.web.automation.test.businessfunctions.ToDoMVCBF;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
@@ -29,9 +30,10 @@ public class BaseTest {
      */
     public HashMap<String, String> testData = new HashMap<>();
     /**
-     * Console Business Functions
+     * Application Business Functions
      */
     public ParaBankBF paraBank = new ParaBankBF();
+    public ToDoMVCBF toDoMCV=new ToDoMVCBF();
     /**
      * Others
       */
