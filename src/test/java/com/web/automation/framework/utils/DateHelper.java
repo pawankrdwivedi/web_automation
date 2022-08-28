@@ -32,4 +32,8 @@ public class DateHelper
         DateTimeFormatter dtFormat=DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss");
         return (dt.toString(dtFormat)).replaceAll("/", "_").replaceAll(":", "_");
     }
+    public String getCurrentMonth(){
+        DateTime dt= new DateTime();
+        return dt.toString("MMM");
+    }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-public class SeleniumHelper extends WebDriverFactory {
+public class SeleniumHelper extends SeleniumWebDriverFactory {
     static int MAX_TIME_WEB_ELEMENT = Integer.parseInt(PropertyReader.getTestBedProperties("maxTimeOutWebElement"));
     GenericHelper genFunctions = new GenericHelper();
     LogHelper logger = new LogHelper();

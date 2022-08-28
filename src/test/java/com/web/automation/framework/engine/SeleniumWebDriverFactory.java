@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import com.web.automation.framework.utils.PropertyReader;
 
-public class WebDriverFactory
+public class SeleniumWebDriverFactory
 {
     public static WebDriver driver;
     static LogHelper logger = new LogHelper();

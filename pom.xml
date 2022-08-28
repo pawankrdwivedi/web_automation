@@ -22,6 +22,7 @@
         <webdriver.version>5.2.2</webdriver.version>
         <selenium.version>4.4.0</selenium.version>
         <courgette.version>6.6.0</courgette.version>
+        <cucumberReport.version>5.7.2</cucumberReport.version>
         <cucumber.version>7.6.0</cucumber.version>
         <healenium.version>3.2.5</healenium.version>
         <poi.version>5.2.2</poi.version>
@@ -49,6 +50,12 @@
             <artifactId>courgette-jvm</artifactId>
             <version>${courgette.version}</version>
         </dependency>
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>${cucumberReport.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-picocontainer</artifactId>
